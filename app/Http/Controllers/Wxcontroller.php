@@ -67,6 +67,8 @@ class Wxcontroller extends Controller
                 $user->status = 1;
                 $user->subtime = time();
                 $user->save();
+                //生成带参数的永久二维码
+                $this->qrcode($openId);
                 return '你好，欢迎关注！';
             }
         }elseif($message->Event == 'unsubscribe'){
@@ -83,5 +85,15 @@ class Wxcontroller extends Controller
         }
     }
 
-    
+    public function qrcode($openId)
+    {
+        $qrcode = $this->app->qrcode;
+        $result = $qrcode->forever($openId);
+        $ticket = $result->ticket;
+        // $url = $result->url;
+        $url = $qrcode->url($ticket);
+        $content = file_get_contents($url); // 得到二进制图片内容
+        file_put_contents(public_path() .'/qrcode/'. $openId .'.png', $content); // 写入文件
+
+    }
 }
