@@ -48,18 +48,31 @@ class Wxcontroller extends Controller
     public function shijian($message)
     {
         $openId = $message->FromUserName;
+        $user = new User();
         if($message->Event == 'subscribe'){
-            // 获取用户信息
-            $userService = $this->app->user;
-            //获取用户实例
-            $userInfo = $userService->get($openId);
-            //存储用户信息
-            $user = new User();
-            $user->name = $userInfo->nickname;;
-            $user->openid = $openId;
-            $user->subtime = time();
-            $user->save();
-            return '你好，欢迎关注！';
+            if($user->where('openid',$openId)->first()){
+                //修改状态
+                $Quser = $user->where('openid',$openId)->first();
+                $Quser->status = 1;
+                $Quser->save();
+                return '你好，欢迎回来！';
+            }else{
+                // 获取用户信息
+                $userService = $this->app->user;
+                //获取用户实例
+                $userInfo = $userService->get($openId);
+                //存储用户信息
+                $user->name = $userInfo->nickname;;
+                $user->openid = $openId;
+                $user->status = 1;
+                $user->subtime = time();
+                $user->save();
+                return '你好，欢迎关注！';
+            }
+        }elseif($message->Event == 'unsubscribe'){
+            $Quser = $user->where('openid',$openId)->first();
+            $Quser->status = 0;
+            $Quser->save();
         }
     }
 
