@@ -66,6 +66,15 @@ class Wxcontroller extends Controller
                 $user->openid = $openId;
                 $user->status = 1;
                 $user->subtime = time();
+                //扫描有参数的二维码,微信服务器会多带一个参数$message->EventKey返回到我的服务器
+                if($message->EventKey){
+                    $q_openid = str_replace('qrscene', '', $message->EventKey);
+                    $p1_user = $user->where('openid',$q_openid)->first();
+                    $user->p1 = $p1_user->uid;
+                    $user->p2 = $p1_user->p1;
+                    $user->p3 = $p1_user->p2;
+                }
+                //扫描没有参数的二维码,直接p1、p2、p3默认为0
                 $user->save();
                 //生成带参数的永久二维码
                 $this->qrcode($openId);
