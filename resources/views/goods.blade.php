@@ -9,7 +9,17 @@
 </head>
 <body>
 	<div class="container">
-	<h2>商品详情</h2>
+		<div class="row">
+			<ul class="nav nav-tabs">
+			  	<li role="presentation" class="active"><a href="{{url('/')}}">首页</a></li>
+			  	<li role="presentation"><a href="#">个人中心</a></li>
+			  	<li role="presentation"><a href="{{url('cart')}}">购物车</a></li>
+			</ul>
+			<ol class="breadcrumb">
+			  	<li><a href="#">首页</a></li>
+			  	<li class="active">商品详情</li>
+			</ol>
+		</div>
 		<div class="row">
 			
 			<div class="col-xs-12">
@@ -20,17 +30,9 @@
 					{{$goods->goods_name}} &yen;<span>{{$goods->goods_price}}</span>
 				</p>
 				<p>
-					<a href="#" class="btn btn-primary">加入购物车</a>
+					<a href="{{url('buy',['gid'=>$goods->gid])}}" class="btn btn-primary">加入购物车</a>
 				</p>
 			</div>
-			
-		</div>
-		<div class="col-xs-12">
-			<ul>
-				<li><a href="">首页</a></li>
-				<li><a href="">个人中心</a></li>
-				<li><a href="">查看购物车</a></li>
-			</ul>
 		</div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
