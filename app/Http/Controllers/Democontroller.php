@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Democontroller extends Controller
+class DemoController extends Controller
 {	
 	//验证请求来自微信服务器
     public function signature()

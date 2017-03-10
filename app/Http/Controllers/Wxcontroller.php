@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Foundation\Application;
 use App\User;
-class Wxcontroller extends Controller
+class WxController extends Controller
 {
     public $app = '';
     //接入微信
@@ -104,5 +104,26 @@ class Wxcontroller extends Controller
         $content = file_get_contents($url); // 得到二进制图片内容
         file_put_contents(public_path() .'/qrcode/'. $openId .'.png', $content); // 写入文件
 
+    }
+
+
+    public function weibo()
+    {
+        $code = $_GET['code'];
+        $url = 'https://api.weibo.com/oauth2/access_token';
+
+        $data = [
+            'client_id'=>'2222',
+            'client_secret'=>1,
+            'grant_type'=>1,
+            'code'=>$code,
+            'redirect_uri'=>'11'
+        ];
+        $curl = curl_init();
+    }
+
+    public function denglu()
+    {
+        return view('login');
     }
 }

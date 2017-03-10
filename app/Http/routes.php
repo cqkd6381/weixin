@@ -10,12 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//商城
+Route::get('/','GoodsController@index');
+Route::get('insert','GoodsController@insert');
+Route::get('goods/{gid}','GoodsController@goods');
+Route::any('cart/{gid}','GoodsController@cart');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::any('/wx','WxController@index');
-
 Route::any('demo','DemoController@index');
+//微信授权登录路由
+Route::any('center','UserController@center');
+Route::any('login','UserController@login');
+Route::any('logout','UserController@logout');
+
 
