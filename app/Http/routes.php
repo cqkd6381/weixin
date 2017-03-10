@@ -19,13 +19,17 @@ Route::any('cart','GoodsController@cart');
 Route::any('cart_clear','GoodsController@cart_clear');
 Route::any('update/{gid}/{quantity}','GoodsController@update');
 Route::any('remove/{gid}','GoodsController@remove');
+Route::any('done','GoodsController@done');
+Route::post('pay','GoodsController@pay');
 
-
+//微信
 Route::any('/wx','WxController@index');
 Route::any('demo','DemoController@index');
+
 //微信授权登录路由
 Route::any('center','UserController@center');
 Route::any('login','UserController@login');
 Route::any('logout','UserController@logout');
 
+//商城后台
 

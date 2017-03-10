@@ -53,14 +53,26 @@
 				<tr>
 					<td>总数：{{$total_num}}个</td>
 					<td>小计：&yen;{{$total_price}}</td>
-					<td>
+					<td colspan="2">
 						<a href="{{url('cart_clear')}}">清空购物车</a>
-					</td>
-					<td>
-						<a href="#">去结算</a>
 					</td>
 				</tr>
 			</table>
+		</div>
+		<div class="row">
+			<form action="{{url('done')}}" method="post">
+				{!!csrf_field()!!}
+				<div class="form-group">
+					<input class="form-control" id="xm" type="text" name="xm" placeholder="收货人">
+				</div>
+				<div class="form-group">
+					<input class="form-control" id="tel" type="text" name="tel" placeholder="手机号">
+				</div>
+				<div class="form-group">
+					<input class="form-control" id="address" type="text" name="address" placeholder="收货地址">
+				</div>
+				<button type="submit" class="btn btn-default">提交订单</button>
+			</form>
 		</div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
