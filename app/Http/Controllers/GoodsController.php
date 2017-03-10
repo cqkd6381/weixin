@@ -13,6 +13,9 @@ class GoodsController extends Controller
     public function index()
     {
         $goods = DB::table('goods')->get();
+        foreach ($goods as $good) {
+            $good->buy_num = mt_rand(0,20);//计算给定gid商品的已购买数量（此处使用随机函数）
+        }
         return view('index',['goods'=>$goods]);
     }
     //商品详情页
@@ -27,14 +30,15 @@ class GoodsController extends Controller
         $goods = DB::table('goods')->where('gid',$gid)->first();
         Cart::add($gid, $goods->goods_name, $goods->goods_price, 1, array());
         
-        return redirect('cart');
+        return redirect('/');
     }
     //购物车
     public function cart()
     {
         $goods_info = Cart::getContent();
-        $total = Cart::getTotal();
-        return view('cart',['goods'=>$goods_info,'total'=>$total]);
+        $total_num = Cart::getTotalQuantity();
+        $total_price = Cart::getTotal();
+        return view('cart',['goods'=>$goods_info,'total_num'=>$total_num,'total_price'=>$total_price]);
     }
     //减少一定数量的同一个商品
     public function update($gid,$quantity)
@@ -42,6 +46,12 @@ class GoodsController extends Controller
         Cart::update($gid, array(
             'quantity' => $quantity,
         ));
+        return redirect('cart');
+    }
+    //删除一个商品
+    public function remove($gid)
+    {
+        Cart::remove($gid);
         return redirect('cart');
     }
     //清空购物车

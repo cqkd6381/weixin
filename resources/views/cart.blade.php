@@ -15,6 +15,10 @@
 			  	<li role="presentation"><a href="#">个人中心</a></li>
 			  	<li role="presentation" class="active"><a href="{{url('cart')}}">购物车</a></li>
 			</ul>
+			
+		</div>
+		<br>
+		<div class="row">
 			<ol class="breadcrumb">
 			  	<li><a href="#">购物车</a></li>
 			  	<li class="active">商品清单</li>
@@ -34,16 +38,26 @@
 					<td>{{$good->price}}</td>
 					<td>{{$good->quantity}}</td>
 					<td>
-						<a href="{{url('buy',['gid'=>$good->id])}}">添加</a>
-						<a href="{{url('update',['gid'=>$good->id,'quantity'=>-1])}}">减少</a>
-						<a href="{{url('update',['gid'=>$good->id,'quantity'=>$good->quantity])}}">删除</a>
+						<a href="{{url('update',['gid'=>$good->id,'quantity'=>1])}}">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</a>
+						<a href="{{url('update',['gid'=>$good->id,'quantity'=>-1])}}">
+							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+						</a>
+						<a href="{{url('remove',['gid'=>$good->id])}}">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</a>
 					</td>
 				</tr>
 				@endforeach
 				<tr>
-					<td colspan="3">小计：&yen;{{$total}}</td>
+					<td>总数：{{$total_num}}个</td>
+					<td>小计：&yen;{{$total_price}}</td>
 					<td>
-						<a class="btn btn-primary btn-sm" href="{{url('cart_clear')}}">清空购物车</a>
+						<a href="{{url('cart_clear')}}">清空购物车</a>
+					</td>
+					<td>
+						<a href="#">去结算</a>
 					</td>
 				</tr>
 			</table>

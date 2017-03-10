@@ -17,7 +17,8 @@ Route::get('goods/{gid}','GoodsController@goods');
 Route::any('buy/{gid}','GoodsController@buy');
 Route::any('cart','GoodsController@cart');
 Route::any('cart_clear','GoodsController@cart_clear');
-Route::any('update/{gid}','GoodsController@update');
+Route::any('update/{gid}/{quantity}','GoodsController@update');
+Route::any('remove/{gid}','GoodsController@remove');
 
 
 Route::any('/wx','WxController@index');

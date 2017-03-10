@@ -11,12 +11,15 @@
 	<div class="container">
 		<div class="row">
 			<ul class="nav nav-tabs">
-			  	<li role="presentation" class="active"><a href="{{url('/')}}">首页</a></li>
+			  	<li role="presentation" class="active"><a href="#">首页</a></li>
 			  	<li role="presentation"><a href="#">个人中心</a></li>
 			  	<li role="presentation"><a href="{{url('cart')}}">购物车</a></li>
 			</ul>
+		</div>
+		<br>
+		<div class="row">
 			<ol class="breadcrumb">
-			  	<li><a href="#">首页</a></li>
+			  	<li><a href="/">首页</a></li>
 			  	<li class="active">商品详情</li>
 			</ol>
 		</div>

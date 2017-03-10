@@ -11,10 +11,13 @@
 	<div class="container">
 		<div class="row">
 			<ul class="nav nav-tabs">
-			  	<li role="presentation" class="active"><a href="{{url('/')}}">首页</a></li>
+			  	<li role="presentation" class="active"><a href="#">首页</a></li>
 			  	<li role="presentation"><a href="#">个人中心</a></li>
 			  	<li role="presentation"><a href="{{url('cart')}}">购物车</a></li>
 			</ul>
+		</div>
+		<br>
+		<div class="row">
 			<ol class="breadcrumb">
 			  	<li><a href="#">首页</a></li>
 			  	<li class="active">商品列表</li>
@@ -31,7 +34,7 @@
 					{{$good->goods_name}} &yen;<span>{{$good->goods_price}}</span>
 				</p>
 				<p>
-					<a href="{{url('buy',['gid'=>$good->gid])}}" class="btn btn-primary">加入购物车</a>
+					<a href="{{url('buy',['gid'=>$good->gid])}}" class="btn btn-primary btn-sm">加入购物车({{$good->buy_num}})</a>
 				</p>
 			</div>
 			@endforeach
